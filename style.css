@@ -1,0 +1,57 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 1rem;
+  background: #f8f8f8;
+}
+
+header {
+  text-align: center;
+}
+
+nav {
+  margin-top: 1rem;
+}
+
+nav button {
+  background: #e0e0e0;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+nav button.active {
+  background: #007bff;
+  color: #fff;
+}
+
+.post {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-color: black;
+  border-style:solid;
+}
+
+.post img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.post p {
+  margin: 0.5rem 0;
+}
+
+.post a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}

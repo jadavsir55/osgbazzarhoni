@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OSG BAZZAR</title>
+  <link rel="stylesheet" href="style.css"/>
+  <!-- Firebase SDK -->
+  <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>📚 OSG BAZZAR</h1>
+    <nav>
+      <button id="latestBtn" class="active">Latest</button>
+      <a href="trending.html">
+        <button id="trendingBtn">Trending</button>
+      </a>
+    </nav>
+  </header>
+  <hr>
+  <!-- 🔽 SAMPLE POST 1 -->
+  <div class="post" data-uploaded="2025-06-14T12:30:00Z">
+    <h3>1.Science numericals(1)</h3>
+    <img src="image.png" alt="Post Image">
+    <p>All the numericals of HEAT and pressure is here !!</p>
+    <a href="https://drive.google.com/drive/folders/11bq6AH9KHMtnfdAB8uWZIgjVqhoBrUXS?usp=sharing" target="_blank">Open Resource</a>
+    <small class="time-ago"></small>
+  </div>
+
+  <div class="post" data-uploaded="2025-06-14T12:30:00Z">
+    <h3>2.Compound Interest </h3>
+    <img src="image copy.png" alt="Post Image">
+    <p>All the solutions of compulsory maths compound interest !!</p>
+    <a href="https://drive.google.com/drive/folders/1EqgePr3wm4dOWHOzW_8pAGKqx3LJ1KwY?usp=drive_link" target="_blank">Open Resource</a>
+    <small class="time-ago"></small>
+  </div>
+
+  <script>
+    function timeAgo(date) {
+      const now = new Date();
+      const seconds = Math.floor((now - date) / 1000);
+
+      let interval = Math.floor(seconds / 31536000);
+      if (interval >= 1) return interval + (interval === 1 ? " year ago" : " years ago");
+
+      interval = Math.floor(seconds / 2592000);
+      if (interval >= 1) return interval + (interval === 1 ? " month ago" : " months ago");
+
+      interval = Math.floor(seconds / 86400);
+      if (interval >= 1) return interval + (interval === 1 ? " day ago" : " days ago");
+
+      interval = Math.floor(seconds / 3600);
+      if (interval >= 1) return interval + (interval === 1 ? " hour ago" : " hours ago");
+
+      interval = Math.floor(seconds / 60);
+      if (interval >= 1) return interval + (interval === 1 ? " minute ago" : " minutes ago");
+
+      return "Just now";
+    }
+
+    function updateTimeAgo() {
+      const posts = document.querySelectorAll('.post');
+      posts.forEach(post => {
+        const uploadedStr = post.getAttribute('data-uploaded');
+        if (!uploadedStr) return;
+        const uploadedDate = new Date(uploadedStr);
+        const timeAgoText = timeAgo(uploadedDate);
+        const timeAgoElem = post.querySelector('.time-ago');
+        if (timeAgoElem) {
+          timeAgoElem.textContent = timeAgoText;
+        }
+      });
+    }
+
+    window.onload = updateTimeAgo;
+  </script>
+</body>
+</html>
