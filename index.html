@@ -11,34 +11,62 @@
   <script defer src="app.js"></script>
 </head>
 <body>
-  <header>
-    <h1>📚 OSG BAZZAR</h1>
-    <nav>
-      <button id="latestBtn" class="active">Latest</button>
-      <a href="trending.html">
-        <button id="trendingBtn">COVERS</button>
-      </a>
-    </nav>
-  </header>
-  <hr>
-  <!-- 🔽 SAMPLE POST 1 -->
-  <div class="post" data-uploaded="2025-06-14T12:30:00Z">
-    <h3>1.Science numericals(1)</h3>
-    <img src="image.png" alt="Post Image">
-    <p>All the numericals of HEAT and pressure is here !!</p>
-    <a href="https://drive.google.com/drive/folders/11bq6AH9KHMtnfdAB8uWZIgjVqhoBrUXS?usp=sharing" target="_blank">Open Resource</a>
-    <small class="time-ago"></small>
+  <!-- ✅ LOCK SCREEN -->
+  <div id="lock-screen">
+    <h2>Enter Password to Access</h2>
+    <input type="password" id="password-input" placeholder="Enter password">
+    <button onclick="checkPassword()">Enter</button>
+    <p id="error-msg"></p>
   </div>
 
-  <div class="post" data-uploaded="2025-06-14T12:30:00Z">
-    <h3>2.Compound Interest </h3>
-    <img src="image copy.png" alt="Post Image">
-    <p>All the solutions of compulsory maths compound interest !!</p>
-    <a href="https://drive.google.com/drive/folders/1EqgePr3wm4dOWHOzW_8pAGKqx3LJ1KwY?usp=drive_link" target="_blank">Open Resource</a>
-    <small class="time-ago"></small>
+  <!-- ✅ MAIN CONTENT (HIDDEN INITIALLY) -->
+  <div id="content" style="display: none;">
+    <header>
+      <h1>📚 OSG BAZZAR</h1>
+      <nav>
+        <button id="latestBtn" class="active">Latest</button>
+        <a href="trending.html">
+          <button id="trendingBtn">COVERS</button>
+        </a>
+      </nav>
+    </header>
+    <hr>
+
+    <!-- 🔽 POSTS -->
+    <div class="post" data-uploaded="2025-06-14T12:30:00Z">
+      <h3>1. Science Numericals (1)</h3>
+      <img src="image.png" alt="Post Image">
+      <p>All the numericals of HEAT and pressure are here!</p>
+      <a href="https://drive.google.com/drive/folders/11bq6AH9KHMtnfdAB8uWZIgjVqhoBrUXS?usp=sharing" target="_blank">Open Resource</a>
+      <small class="time-ago"></small>
+    </div>
+
+    <div class="post" data-uploaded="2025-06-14T12:30:00Z">
+      <h3>2. Compound Interest</h3>
+      <img src="image copy.png" alt="Post Image">
+      <p>All the solutions of compulsory maths compound interest!</p>
+      <a href="https://drive.google.com/drive/folders/1EqgePr3wm4dOWHOzW_8pAGKqx3LJ1KwY?usp=drive_link" target="_blank">Open Resource</a>
+      <small class="time-ago"></small>
+    </div>
   </div>
 
+  <!-- ✅ ALL SCRIPTS BELOW -->
   <script>
+    // SIMPLE PASSWORD CHECK
+    function checkPassword() {
+      const password = document.getElementById('password-input').value;
+      const correctPassword = "osg123"; // CHANGE THIS
+
+      if (password === correctPassword) {
+        document.getElementById('lock-screen').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        updateTimeAgo();
+      } else {
+        document.getElementById('error-msg').textContent = "Incorrect password. Try again.";
+      }
+    }
+
+    // TIME AGO FUNCTIONS
     function timeAgo(date) {
       const now = new Date();
       const seconds = Math.floor((now - date) / 1000);
@@ -74,8 +102,6 @@
         }
       });
     }
-
-    window.onload = updateTimeAgo;
   </script>
 </body>
 </html>
